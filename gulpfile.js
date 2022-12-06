@@ -13,11 +13,18 @@ var ghPages = require('gulp-gh-pages');
 const paths = {
     scripts: {
         src: './app',
-        dest: './build'
+        dest: './build',
+        css: './build/css',
+        js: './build/js',
+        imagesPath: './build/images'
     }
 }
 async function buildHtml(){
     gulp.src(['app/*.html']).pipe(gulp.dest(paths.scripts.dest))
+    gulp.src(['app/css/*.css']).pipe(gulp.dest(paths.scripts.css))
+    gulp.src(['app/js/*.js']).pipe(gulp.dest(paths.scripts.js))
+    gulp.src(['app/images/*.*']).pipe(gulp.dest(paths.scripts.imagesPath))
+
 }
 
 function browsersync() {
