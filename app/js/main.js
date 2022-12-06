@@ -14,8 +14,6 @@ $(function () {
         $('.sign-btn').toggleClass('sign-btn--open')
         $('.login-btn').toggleClass('login-btn--open')
         $('.header__burger-btn').toggleClass('header__burger-btn--open')
-
-
     })
 
 
