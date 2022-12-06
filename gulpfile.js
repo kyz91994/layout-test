@@ -7,25 +7,29 @@ const uglify = require('gulp-uglify-es').default;
 const autoprefixer = require('gulp-autoprefixer');
 const imagemin = require('gulp-imagemin');
 const del = require('del');
-var gulp = require('gulp');
-var ghPages = require('gulp-gh-pages');
+const gulp = require('gulp');
+const ghPages = require('gulp-gh-pages');
 
-const paths = {
-    scripts: {
-        src: './app',
-        dest: './build',
-        css: './build/css',
-        js: './build/js',
-        imagesPath: './build/images'
-    }
-}
-async function buildHtml(){
-    gulp.src(['app/*.html']).pipe(gulp.dest(paths.scripts.dest))
-    gulp.src(['app/css/*.css']).pipe(gulp.dest(paths.scripts.css))
-    gulp.src(['app/js/*.js']).pipe(gulp.dest(paths.scripts.js))
-    gulp.src(['app/images/*.*']).pipe(gulp.dest(paths.scripts.imagesPath))
+gulp.task('deploy', function() {
+    return gulp.src('./dist/**/*')
+        .pipe(ghPages());
+});
 
-}
+// const paths = {
+//     scripts: {
+//         src: './app',
+//         dest: './build',
+//         css: './build/css',
+//         js: './build/js',
+//         imagesPath: './build/images'
+//     }
+// }
+// async function buildHtml(){
+//     gulp.src(['app/*.html']).pipe(gulp.dest(paths.scripts.dest))
+//     gulp.src(['app/css/*.css']).pipe(gulp.dest(paths.scripts.css))
+//     gulp.src(['app/js/*.js']).pipe(gulp.dest(paths.scripts.js))
+//     gulp.src(['app/images/*.*']).pipe(gulp.dest(paths.scripts.imagesPath))
+// }
 
 function browsersync() {
     browserSync.init({
@@ -104,13 +108,13 @@ exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.images = images;
 exports.cleanDist = cleanDist;
-exports.buildHtml = async function(){
-    buildHtml()
-}
+// exports.buildHtml = async function(){
+//     buildHtml()
+// }
 
 
 exports.build = series(cleanDist, images, build);
-exports.default = parallel(styles, scripts, browsersync, watching, buildHtml);
+exports.default = parallel(styles, scripts, browsersync, watching);
 
 
 gulp.task('deploy', function (){
