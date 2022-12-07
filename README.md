@@ -9,4 +9,4 @@
 * Сборка проекта и запуск локального сервера - `gulp`
 
 
-### Ссылка на GitHubPages 
+### Ссылка на GitHubPages https://kyz91994.github.io/layout-test/
